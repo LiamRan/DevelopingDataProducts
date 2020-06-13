@@ -1,0 +1,106 @@
+---
+title: "Developing Data Product"
+author: "William Tai"
+date: "6/13/2020"
+output: ioslides_presentation
+fontsize: 9pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<style type="text/css">
+body{ /* Normal */
+font-size: 12px;
+}
+
+pre { /* Code block - determines code spacing between lines */
+font-size: 12px;
+}
+</style>
+
+## Objectives
+<font size = "4">The objectives of the assignment are to:</font>
+
+<font size = "3">1. Create a shiny application</font>
+<font size = "2">
+
+- Write and deploy a shiny application using R-studio
+
+- The application includes a form of input, operation on the ui input in server.R, and displayed reactive output.
+
+The link is provided here: https://github.com/LiamRan/DevelopingDataProducts </font>
+
+<font size = "3">
+2. Create a R presentation</font>
+<font size = "2">
+
+- Five slides to pitch were done in R-studio presenter
+
+- The presentation is hosted on Rpubs
+
+- Sample R codes are embedded on the presentation
+
+The link is provided here: https://rpubs.com/LiamRan/627315 </font>
+
+## mtcars: Motor Trend Car Road tests
+<font size = "3">
+
+R comes with several built-in data sets, which are generally used as demo data for using with R functions. The mtcars dataset is one of the most used R built-in data sets.
+
+The data was extracted from the 1974 Motor Trend US magazine and comprises fuel consumption (miles per gallon) and 10 aspects (number of cylinders, displacement, horsepower, rear axle ratio, weight, 1/4 mile time, engine, transmission, number of forward gears, and number of carburetors) of automobile design and performance for 32 automobiles (1973–74 models).
+
+The content of the data set which contains 32 observations and 11 variables is shown below.</font>
+```{r, echo = TRUE}
+head(mtcars)
+```
+
+## R Codes
+
+<font size = "3">The sample R codes used by the shiny application are provided below.
+```{r, message = FALSE, echo = TRUE, results = "hide", fig.show="hide"}
+attach(mtcars)  # This attach function allows the access to variables of the mtcars dataset
+summary(wt)     # Summary of the car weight (1000 lbs)
+cor(mpg,wt)     # Correlation between fuel consumption and car weight
+```
+
+The scatterplot is used for quantitative variables (displacement, horsepower, rear axle ratio, weight, and 1/4 mile time)
+
+```{r, message = FALSE, echo = TRUE, results = "hide", fig.show="hide"}
+plot(mpg,wt)  # Plot of fuel consumption versus car weight
+```
+
+The boxplot is used for qualitiative variables (cylinders, engine, transmission, number of forward gears, and number of carburetors).
+
+```{r, message = FALSE, echo = TRUE, results = "hide", fig.show="hide"}
+boxplot(mpg~cyl,col= c("green", "blue", "red"))  # Box plot of fuel consumption versus number of cylinders
+```
+</font>
+
+## Shiny Application
+
+<font size = "3">The application is located here: https://liamran.shinyapps.io/Shiny/
+
+Left Pane: This pane provides a list of car mileage variables to be picked as an input.</font>
+<font size = "2">
+
+- Quantitative variables: disp (displacement), hp (horsepower), rear axle ratio (drat), weight (wt), 1/4 mile time (qsec)
+
+- Qualititative variables: cylinders (cyl), engine (vs), transmission (am), number of forward gears (gears), number of carburetors (carb)
+
+<font size = "3">
+
+Main Panel: This pane provides a list of output</font>
+
+<font size = "2">
+
+- Data: Displays all 32 observations of the dataset
+
+- Summary: Provides five-summary statistics (minimum, first quartile, median, third quartile, and maximum)
+
+- Correlation: Relationship between fuel consumption (mpg) and selected car mileage variable
+
+- Plot: Scatterplot or boxplot of fuel consumption (mpg) versus selected car mileage variable
+
+</font>
